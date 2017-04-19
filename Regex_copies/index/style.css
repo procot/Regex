@@ -1,0 +1,144 @@
+* {
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+@font-face {
+	font-family: 'ABeeZee';
+	src: url(/../fonts/ABeeZee-Regular.ttf);
+}
+
+@font-face {
+	font-family: 'Gloria Hallelujah';
+	src: url(/../fonts/GloriaHallelujah.ttf);
+}
+
+body {
+	background: #edeef0;
+	margin: 8px 15%;
+	min-width: 330px;
+}
+
+header {
+	height: 86px;
+}
+
+#headchild {
+	width: 100%;
+	height: 100%;
+    background: #507299;
+}
+
+#headchild1 {
+	width: calc(100% - 150px);
+	float: left;
+	height: 100%;
+}
+
+#headchild1_1 {
+	height: 100%;
+	padding-top: 10px;
+	box-sizing: border-box;
+}
+
+#headchild1_1 a {
+	cursor:pointer;
+	text-decoration:none;
+}
+
+#headchild2 {
+	float: left;
+	height: 100%;
+	width: 150px;
+}
+
+#headchild2_1 {
+	padding: 0 calc(calc(100% - 122px) / 2);
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.regLog {
+	overflow: hidden;
+	width: 122px;
+	height: 50px;
+	padding: 18px 0;
+}
+
+.regLog a {
+	width: 100%;
+	text-decoration: none;
+}
+
+.regLog a div {
+	background: linear-gradient(to top, #fefcea, #9DA9AF);
+	margin-bottom: 10px;
+	height: 20px;
+	font-size: 15px;
+	text-align: center;
+	font-family: 'ABeeZee', sans-serif;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.regLog a:hover div {
+	box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+	background: #52b8ea;
+	color: white;
+}
+
+.menu {
+	clear: both;
+	height: 40px;
+	background: #507299;
+	margin-top: 2px;
+	padding: 0 5%;
+	box-sizing: border-box;
+}
+
+.menu a div {
+	height: 40px;
+	width: 122px;
+	display: inline-block;
+	text-align: center;
+	font-size: 18px;
+	box-sizing: border-box;
+	padding: 10px 0;
+	font-family: 'ABeeZee', sans-serif;
+	color: #edeef0;
+	cursor: pointer;
+}
+
+.menu a:hover div {
+	background: linear-gradient(to top, #fefcea, #266ab7);
+	color: #06144e;
+	box-shadow:
+   	0 1px 4px rgba(0, 0, 0, .3),
+   	-23px 0 20px -23px rgba(0, 0, 0, .8),
+   	23px 0 20px -23px rgba(0, 0, 0, .8),
+   	0 0 40px rgba(0, 0, 0, .1) inset;
+}
+
+.nameSite {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 30px;
+    box-sizing: border-box;
+    font-family: 'Gloria Hallelujah', cursive;
+    color: #edeef0;
+}
+
+#user {
+	width: calc(100% - 366px);
+	display: inline-block;
+}
+
+#user div {
+	font-family: 'ABeeZee', sans-serif;
+	color: #aae2ad;
+	font-size: 17px;
+	text-align: right;
+}

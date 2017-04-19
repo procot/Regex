@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="regex">
+    <head>
+        <title>Regex.com</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="../app/bower_components/angular/angular.min.js"></script>
+        <script src="but-reg-component.js"></script>
+    </head>
+    <body link="black" vlink="black" alink="black">
+        <header>
+            <div id="headchild">
+                <div id="headchild1">
+                    <div id="headchild1_1">
+                        <div class="nameSite">Regex.com</div>
+                    </div>
+                </div>
+                <div id="headchild2">
+                    <div id="headchild2_1">
+                        <div class="regLog">
+                            <!--<a class="registrWindowShow" onclick="registration()"><div>Регистрация</div></a>
+                            <a class="loginWindowShow" onclick="logIn()"><div>Войти</div></a>
+                            <a class="logout" onclick="logOut()"><div>Выйти</div></a>-->
+                            <but-reg></but-reg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="menu">
+            <a href="/"><div>Главная</div></a>
+            <a href="/archive"><div>Архив задач</div></a>
+            <a id="user"><div></div></a>
+        </div>
+        <div class="body"></div>
+        <script src="script.js"></script>
+    </body>
+</html>
