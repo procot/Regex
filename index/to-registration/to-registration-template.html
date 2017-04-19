@@ -1,0 +1,21 @@
+<div class="body">
+    <div id="regText">Регистрация</div>
+    <div>
+        <div>Логин</div>
+        <input type="text" id="login" tabindex="4">
+    </div>
+    <div>
+        <div>E-mail</div>
+        <input type="text" id="email" tabindex="5">
+    </div>
+    <div>
+        <div>Пароль</div>
+        <input type="password" id="password" tabindex="6">
+    </div>
+    <div id="check">
+        <div>Показать пароль</div>
+        <input type="checkbox" onclick="showPassword(this)" tabindex="7" onkeypress="if(event.keyCode===13)showPassword(this)">
+    </div>
+    <div id="reg"><a onclick="reg()" tabindex="8" onkeypress="if(event.keyCode===13)reg()"><div>Зарегистрироваться</div></a></div>
+    <div class="login"><a href="#/login" tabindex="9">Войти</a></div>
+</div>

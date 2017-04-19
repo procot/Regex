@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="RegexTasks">
+    <head>
+        <title>Regex.com</title>
+        <meta charset="utf-8">
+        <script src="index/app.js"></script>
+        <script src="index/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="index/style.css">
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="index/app-module.js"></script>        
+        <script src="index/app-config.js"></script>
+        <script src="index/to-home/to-home-module.js"></script>
+        <script src="index/to-home/to-home-component.js"></script>
+        <script src="index/to-login/to-login-module.js"></script>
+        <script src="index/to-login/to-login-component.js"></script>
+        <script src="index/to-registration/to-registration-module.js"></script>
+        <script src="index/to-registration/to-registration-component.js"></script>
+    </head>
+    <body link="black" vlink="black" alink="black">
+        <header>
+            <div id="headchild">
+                <div id="headchild1">
+                    <div id="headchild1_1">
+                        <a href="#/"><div class="nameSite">Regex.com</div></a>
+                    </div>
+                </div>
+                <div id="headchild2">
+                    <div id="headchild2_1">
+                        <div class="regLog">
+                            <a ng-repeat="button in buttons" href="#/{{button.href}}" ng-click=button.click><div>{{button.text}} {{button.click}}</div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div ng-view></div>
+    </body>
+</html>
