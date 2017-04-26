@@ -1,0 +1,37 @@
+<div class="body">
+	<div id="info">
+		<span>Прежде чем отправлять решение на проверку, изучите <a href="#/task-information">информацию</a>	по оформлению решения задачи для отправки на проверку</span>
+	</div>
+	<div id="task" ng-repeat="task in $ctrl.allTasks">
+		<a href="#/task/{{task.href}}">{{task.title}}</a>
+	</div>
+</div>
+<style type="text/css">
+	.body {
+	}
+
+	#task {
+	    height: 60px;
+	    padding: 20px 20px;
+	    box-sizing: border-box;
+	    background: lavender;
+	    margin-top: 3px;
+	    margin: auto;
+	    width: calc(100% - 2px);
+	    margin-bottom: 5px; 
+	}
+
+	#info {
+		margin: 25px 0;
+		padding: 0 25px;
+		box-sizing: border-box;
+	}
+
+	#info span a:hover {
+		color: #218be8;
+	}
+
+	#task:hover {
+		box-shadow: 0 0 10px #218be8;
+	}
+</style>

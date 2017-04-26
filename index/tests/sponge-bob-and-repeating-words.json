@@ -1,0 +1,98 @@
+[
+	{
+		"input": "This is test",
+		"output": "This is test"
+	},
+	{
+		"input": "This is is test",
+		"output": "This is aisa test"
+	},
+	{
+		"input": "This this test is is",
+		"output": "This athisa test is aisa"
+	},
+	{
+		"input": "This This is is is is is is is is is is javascript",
+		"output": "This aThisa is aisa aisa aisa aisa aisa aisa aisa aisa aisa javascript"
+	},
+	{
+		"input": "JAVASCRIPT IS VERY GOOD",
+		"output": "JAVASCRIPT IS VERY GOOD"
+	},
+	{
+		"input": "JAVASCRIPT JAVASCRIPT javascript javascript is is is is this this ok",
+		"output": "JAVASCRIPT aJAVASCRIPTa javascript ajavascripta is aisa aisa aisa this athisa ok"
+	},
+	{
+		"input": "love regular expression",
+		"output": "love regular expression"
+	},
+	{
+		"input": "LOVE REGULAR EXPRESSION",
+		"output": "LOVE REGULAR EXPRESSION"
+	},
+	{
+		"input": "regex the best",
+		"output": "regex the best"
+	},
+	{
+		"input": "javascript one love",
+		"output": "javascript one love"
+	},
+	{
+		"input": "javascript javascript javascript javascript javascript one love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta ajavascripta one love"
+	},
+	{
+		"input": "javascript javascript javascript javascript this one love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta this one love"
+	},
+	{
+		"input": "javascript javascript javascript javascript this this is is one love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta this athisa is aisa one love"
+	},
+	{
+		"input": "javascript one one one love",
+		"output": "javascript one one one love"
+	},
+	{
+		"input": "javascript one love love love",
+		"output": "javascript one love love love"
+	},
+	{
+		"input": "javascript one one one love love love",
+		"output": "javascript one one one love love love"
+	},
+	{
+		"input": "javascript javascript javascript javascript javascript one one one love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta ajavascripta one one one love"
+	},
+	{
+		"input": "javascript javascript javascript javascript javascript one love love love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta ajavascripta one love love love"
+	},
+	{
+		"input": "javascript javascript javascript javascript javascript one one one love love love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta ajavascripta one one one love love love"
+	},
+	{
+		"input": "javascript javascript javascript javascript this one love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta this one love"
+	},
+	{
+		"input": "javascript javascript javascript javascript this one one one love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta this one one one love"
+	},
+	{
+		"input": "javascript javascript javascript javascript this one love love love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta this one love love love"
+	},
+	{
+		"input": "javascript javascript javascript javascript this one one one love love love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta this one one one love love love"
+	},
+	{
+		"input": "javascript javascript javascript javascript this this is is one love",
+		"output": "javascript ajavascripta ajavascripta ajavascripta this athisa is aisa one love"
+	}
+]

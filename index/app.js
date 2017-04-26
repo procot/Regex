@@ -2,6 +2,20 @@ class Regex {
     constructor () {
         this.user = {};
         this.isAutorizated = false;
+        this.results = [];
+        this.currentTask = {
+            titleRussian: '',
+            titleEnglish: ''
+        };
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/getUserInfo', true);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== 4) return;
+            const res = JSON.parse(xhr.responseText);
+            this.user = res.data ? res.data : {};
+            this.isAutorizated = res.isAutorizated ? res.isAutorizated : false;
+        }
+        xhr.send();
     }
 
     Registration (user) {
@@ -9,10 +23,11 @@ class Regex {
         xhr.open("POST", "/autoriz?reg", true);
         xhr.onreadystatechange = () => {
             if (xhr.readyState !== 4) return;
-            this.user = xhr.response ? JSON.parse(xhr.responseText) : {};
-            this.isAutorizated = xhr.response ? true : false;
+            const res = JSON.parse(xhr.responseText);
+            this.user = res.data;
+            this.isAutorizated = res.isAutorizated;
             if (!this.isAutorizated) {
-                alert('Такой пользователь еще не зарегистрирован');
+                alert('Такой пользователь уже зарегистрирован');
             } else {
                 document.location.href = '#/';
             }
@@ -25,8 +40,9 @@ class Regex {
         xhr.open("POST", "/autoriz?login", true);
         xhr.onreadystatechange = () => {
             if (xhr.readyState !== 4) return;
-            this.user = xhr.response ? JSON.parse(xhr.responseText) : {};
-            this.isAutorizated = xhr.response ? true : false;
+            const res = JSON.parse(xhr.responseText);
+            this.user = res.data;
+            this.isAutorizated = res.isAutorizated;
             if (!this.isAutorizated) {
                 alert('Такой пользователь еще не зарегистрирован');
             } else {
@@ -36,9 +52,51 @@ class Regex {
         xhr.send(JSON.stringify(user));
     }
 
-    Logout () {
-        this.user = {};
-        this.isAutorizated = false;
+    Logout (source) {
+        const self = this;
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/logout', true);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== 4) return;
+            self.user = {};
+            self.isAutorizated = false;
+            document.location.href = '#/';
+        }
+        xhr.send();
+    }
+
+    Submit(data) {
+        const self = this;
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/checkTask', true);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState !== 4) return;
+            const res = JSON.parse(xhr.responseText);
+            if (res.status === 'runtime') {
+                self.results.unshift({
+                    "message": `Ошибка исполнения на тесте ${res.number}`,
+                    'status': 'error',
+                    'task': self.currentTask.titleRussian,
+                    'href': `#/task/${self.currentTask.titleEnglish}`
+                });
+            } else if (res.status === 'answer') {
+                self.results.unshift({
+                    "message": `Неправильный ответ на тесте ${res.number}`,
+                    'status': 'error',
+                    'task': self.currentTask.titleRussian,
+                    'href': `#/task/${self.currentTask.titleEnglish}`
+                });
+            } else {
+                self.results.unshift({
+                    "message": 'Все тесты пройдены',
+                    'status': 'ok',
+                    'task': self.currentTask.titleRussian,
+                    'href': `#/task/${self.currentTask.titleEnglish}`
+                });
+            }
+            document.location.href = '#/task/results';
+        }
+        xhr.send(JSON.stringify(data));
     }
 
     get User() {

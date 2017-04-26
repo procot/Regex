@@ -1,0 +1,72 @@
+<div class="body">
+	<div id="title">
+		<h3><b>{{$ctrl.task.title}}</b></h3>
+	</div>
+	<div id="task">
+		<p ng-repeat="text in $ctrl.task.task">{{text}}</p>
+	</div>
+	<div id="input">
+		<p>
+			<b>Входные данные:</b><br>
+			<span>{{$ctrl.task.input}}</span>
+		</p>
+	</div>
+	<div id="output">
+		<p>
+			<b>Выходные данные:</b><br>
+			<span>{{$ctrl.task.output}}</span>
+		</p>
+	</div>
+	<div><b>Примеры:</b></div>
+	<div id="examples" ng-repeat="example in $ctrl.task.examples">
+		<p>
+			<b>Входные данные:</b>
+			<div>{{example.input}}</div>
+		</p>
+		<p>
+			<b>Выходные данные:</b>
+			<div>{{example.output}}</div>
+		</p>
+	</div>
+	<div style="margin-bottom: 15px;"><b>Отправка решения</b></div>
+	<div ng-if="$ctrl.isAutorizated">
+		<textarea id="code"></textarea>
+		<button ng-click="$ctrl.submit()">Отправить решение</button>
+	</div>
+	<div ng-if="!$ctrl.isAutorizated" id="errSubmit">
+		Отправлять на проверку решения могут только авторизованные пользователи. Попробуйте позже после <a href="#/login">авторизации</a>/<a href="#/registration">регистрации</a>.
+	</div>
+</div>
+<style>
+	.body {
+		padding: 20px;
+		box-sizing: border-box;
+	}
+
+	#examples div {
+	    height: 70px;
+	    background: lightsteelblue;
+	    border-radius: 5px;
+	    padding: 10px;
+	    box-sizing: border-box;
+	    color: darkblue;
+	}
+
+	textarea {
+	    width: 100%;
+	    height: 400px;
+	    margin-bottom: 5px;
+	}
+
+	button {
+	    height: 30px;
+	}
+
+	#errSubmit a {
+		color: #218be8;
+	}
+
+	#errSubmit a:hover {
+		color: #181e23;
+	}
+</style>

@@ -2,5 +2,8 @@ angular.module("RegexTasks", [
     'toLogin',
     'ngRoute',
     'toHome',
-    'toRegistration'
+    'toRegistration',
+    'toArchieve',
+    'toTask',
+    'toUser'
 ]);

@@ -1,31 +1,19 @@
+angular.module('toHome', []);
+
 angular.
     module('toHome').
     component('toHome', {
-        template: '<div class="body"></div>',
+        templateUrl: 'index/to-home/to-home-template.html',
         controller: ['$rootScope',
             function toHomeController($rootScope) {
+                $rootScope.title = 'Главная';
+                $rootScope.showingMenu = true;
                 if (!classRegex.isAutorizated) {
-                    $rootScope.buttons = [
-                        {
-                            "href": "registration",
-                            "text": "Регистрация",
-                            "click": ""
-                        },
-                        {
-                            "href": "login",
-                            "text": "Войти",
-                            "click": ""
-                        }
-                    ];
+                    $rootScope.isAutorizated = false;
                 } else {
-                    $rootScope.buttons = [
-                        {
-                            "href": "",
-                            "text": "Выйти",
-                            "click": "logOut()"
-                        }
-                    ];
+                    $rootScope.isAutorizated = true;
+                    $rootScope.userName = classRegex.user.login;
                 }
             }
         ]
-    })
+    });

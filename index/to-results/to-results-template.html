@@ -1,0 +1,41 @@
+<div class="body">
+	<div id="ans" ng-repeat="answer in $ctrl.results">
+		<div id="title"><a href="{{answer.href}}">{{answer.task}}</a></div>
+		<div id="error" ng-if="answer.status==='error'">{{answer.message}}</div>
+		<div id="ok" ng-if="answer.status==='ok'">{{answer.message}}</div>
+	</div>
+</div>
+<style type="text/css">
+	.body {
+	    padding: 25px;
+    	padding-bottom: 23px;
+    	box-sizing: border-box;
+	}
+
+	#ans {
+		height: 30px;
+    	margin-top: 2px;
+	}
+
+	#title {
+		float: left;
+	}
+
+	#error {
+		float: right;
+	    font-size: 15px;
+	    background: red;
+	    color: black;
+	    border-radius: 5px;
+	    padding: 2px;
+	}
+
+	#ok {
+		float: right;
+	    font-size: 15px;
+	    background: #21e021;
+	    color: black;
+	    border-radius: 5px;
+	    padding: 2px;
+	}
+</style>

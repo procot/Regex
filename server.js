@@ -6,74 +6,16 @@ const mongoClient = require("mongodb").MongoClient;
 const mongoUrl = "mongodb://localhost:27017/regexdb";
 
 const requests = {};
-let isAutorizated = false;
-let currentUser = null;
+let currentUser = {};
 
 requests["/"] = function (res) {
-	/*let count = 2;
-    let home = '<!DOCTYPE html><html><head><title>Главная</title><meta charset="utf-8">' +
-				'<link rel="stylesheet" type="text/css" href="index/style.css"></head>' +
-				'<body link="black" vlink="black" alink="black"><header><div id="headchild">' +
-				'<div id="headchild1"><div id="headchild1_1"><a onclick="toHome()" tabindex="1"><div class="nameSite">Regex.com</div></a></div></div>' +
-				'<div id="headchild2"><div id="headchild2_1"><div class="regLog">';
-	if (isAutorizated){
-		home += '<a onclick="logOut()" tabindex="' + `${count++}` + '" onkeypress="if(event.keyCode===13)logOut()">' + 
-		'<div style="margin: 15px 0;">Выйти</div></a>';
-	}
-	else {
-		home += '<a onclick="registration()" tabindex="' + `${count++}` + '" onkeypress="if(event.keyCode===13)registration()"' + 
-				'><div>Регистрация</div></a>' + 
-				'<a onclick="login()" tabindex="' + `${count++}` + '" onkeypress="if(event.keyCode===13)login()"><div>Войти</div></a>';
-	}
-
-	home += '</div></div></div></div></header><div class="menu"><a onclick="toHome()" tabindex="' + `${count++}` + '"' + 
-			' onkeypress="if(event.keyCode===13)toHome()"><div>Главная</div></a>' +
-			'<a onclick="toArchive()" tabindex="' + `${count++}` + '" onkeypress="if(event.keyCode===13)toArchive()"><div>Архив задач</div></a>';
-
-	if (currentUser != null)
-		home += '<a onclick="user()" tabindex="' + `${count++}` + '" onkeypress="if(event.keyCode===13)user()"><div>Профиль</div></a><div id="user"><div>' + currentUser.login + '</div></div>';
-	
-	home += '</div><div class="body"></div>' + '<script src="index/script.js"></script></body></html>';*/
-
-    /*res.writeHead(200, {"Content-Type": "text/html"});
-    res.end(home);*/
 	requests["file"](res, "/index/index.html");
 }
 
-requests["/registration"] = function (res) {
-	fs.readFile("registration/registr.html", (err, data) => {
-		if (err) return res.end();
-
-		res.writeHead(200, {"Content-Type": "text/html"});
-		
-		res.end(data);
-	});
-}
-
-requests["/login"] = function (res) {
-	fs.readFile("login/login.html", "utf-8", (err, data) => {
-		if (err) return res.end();
-
-		res.writeHead(200, {"Content-Type": "text/html"});
-		
-		res.write(data);
-		res.end();
-	});
-}
-
-requests["/logout"] = function (res) {
-	isAutorizated = false;
-	currentUser = null;
+requests["/logout"] = function (res, req) {
+	currentUser.data = {};
+	currentUser.isAutorizated = false;
 	res.end();
-}
-
-requests["/tasks"] = function (res) {
-	fs.readFile("tasks/tasks.html", (err, data) => {
-		if (err) return res.end();
-
-		res.writeHead(200, {"Content-Type": "text/html"});
-		res.end(data);
-	});
 }
 
 requests["file"] = function (res, nameFile) {
@@ -101,7 +43,7 @@ requests["file"] = function (res, nameFile) {
 	});
 }
 
-requests["/autoriz"] = function (res, query, req) {
+requests["/autoriz"] = function (res, req, query) {
 	if (query === "reg") {
 		let user = {};
 
@@ -111,6 +53,10 @@ requests["/autoriz"] = function (res, query, req) {
 
 		req.on("end", () => {
 			mongoClient.connect(mongoUrl, (err, db) => {
+				if (err) {
+					res.end();
+					return err;
+				}
 				db.collection("users").find(user).toArray((err, result) => {
 					if (err) {
 						res.end();
@@ -126,9 +72,18 @@ requests["/autoriz"] = function (res, query, req) {
 								res.end();
 								return err;
 							}
+							
+							currentUser.data = {};
+							currentUser.isAutorizated = true;
+							for (let key in user)
+								currentUser['data'][key] = user[key];
 
-							res.write(JSON.stringify(result[0]));
-							res.end();
+							fs.writeFile('index/users/' + user.login + '.json', JSON.stringify({"login": user.login}), (err) => {
+								if (err) {
+									console.log('Error: cannot create file' + user.login + '.json');
+								}
+							});
+							res.write(JSON.stringify(currentUser));
 							res.end();
 						});
 					}
@@ -144,17 +99,25 @@ requests["/autoriz"] = function (res, query, req) {
 
 		req.on("end", () => {
 			mongoClient.connect(mongoUrl, (err, db) => {
-				if (err) return res.end();
+				if (err) {
+					res.end();
+					return err;
+				}
 
 				db.collection("users").find(user).toArray((err, result) => {
 					if (err) {
-						isAutorizated = false;
 						db.close();
 						res.end();
 						return err;
 					}
 
-					res.write(JSON.stringify(result[0]));
+					currentUser = {};
+					currentUser.data = {};
+					currentUser.isAutorizated = true;
+					for (let key in result[0])
+						currentUser['data'][key] = result[0][key];
+
+					res.write(JSON.stringify(currentUser));
 					res.end();
 					db.close();
 				});				
@@ -163,8 +126,52 @@ requests["/autoriz"] = function (res, query, req) {
 	}
 }
 
-requests["/user"] = function (res) {
-	res.end();
+requests["/getUserInfo"] = function (res) {
+	res.end(JSON.stringify(currentUser));
+}
+
+requests["/checkTask"] = function (res, req) {
+	let task;
+	req.on('data', (data) => {
+		task = JSON.parse(data);
+	});
+
+	req.on('end', () => {
+		let tests;
+		const code = new Function('', `return ${task.code}`);
+		fs.readFile(`index/tests/${task.task}.json`, (err, data) => {
+			if (err) {
+				res.end();
+				return;
+			}
+
+			tests = JSON.parse(data);
+			for (let i = 0; i < tests.length; ++i) {
+				let result;
+				try {
+					result = code()(tests[i].input);
+					if (result !== tests[i].output) {
+						const e = {
+						"status": "answer",
+						"number": i + 1
+						};
+						res.end(JSON.stringify(e));
+						return;
+					}
+				} catch(e) {
+					let er = {};
+					er.status = 'runtime';
+					er.number = i + 1;
+					res.end(JSON.stringify(er));
+					return;
+				}
+			}
+			const r = {
+				status: "OK"
+			};
+			res.end(JSON.stringify(r));
+		});
+	});
 }
 
 function start() {
@@ -173,7 +180,7 @@ function start() {
 		if (/(\.\S+)$/.test(path.pathname))
 			requests["file"](res, path.pathname);
 		else
-        requests[path.pathname](res, path.query, req);
+        requests[path.pathname](res, req, path.query);
     }).listen(8888, "127.0.0.1");
     console.log("Server started");
 }

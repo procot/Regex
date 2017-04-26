@@ -1,39 +1,51 @@
 <!DOCTYPE html>
 <html ng-app="RegexTasks">
     <head>
-        <title>Regex.com</title>
+        <title>{{title}}</title>
         <meta charset="utf-8">
         <script src="index/app.js"></script>
         <script src="index/script.js"></script>
         <link rel="stylesheet" type="text/css" href="index/style.css">
-        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="index/app-module.js"></script>        
         <script src="index/app-config.js"></script>
-        <script src="index/to-home/to-home-module.js"></script>
         <script src="index/to-home/to-home-component.js"></script>
-        <script src="index/to-login/to-login-module.js"></script>
         <script src="index/to-login/to-login-component.js"></script>
-        <script src="index/to-registration/to-registration-module.js"></script>
         <script src="index/to-registration/to-registration-component.js"></script>
+        <script src="index/to-archieve/to-archive-component.js"></script>
+        <script src="index/to-task/to-task-component.js"></script>
+        <script src="index/to-user/to-user-component.js"></script>
+        <script src="index/to-results/to-results-component.js"></script>
     </head>
     <body link="black" vlink="black" alink="black">
         <header>
-            <div id="headchild">
-                <div id="headchild1">
-                    <div id="headchild1_1">
-                        <a href="#/"><div class="nameSite">Regex.com</div></a>
+            <section>
+                <div id="headchild">
+                    <div id="headchild1">
+                        <div id="headchild1_1">
+                            <a href="#/"><div class="nameSite">Regex.com</div></a>
+                        </div>
                     </div>
-                </div>
-                <div id="headchild2">
-                    <div id="headchild2_1">
-                        <div class="regLog">
-                            <a ng-repeat="button in buttons" href="#/{{button.href}}" ng-click=button.click><div>{{button.text}} {{button.click}}</div></a>
+                    <div id="headchild2">
+                        <div id="headchild2_1">
+                            <div class="regLog" ng-controller="logOut">
+                                <a ng-if="!isAutorizated" href="#/registration"><div>Регистрация</div></a>
+                                <a ng-if="!isAutorizated" href="#/login"><div>Войти</div></a>
+                                <a ng-if="isAutorizated" ng-click="logout()"><div id="logOut">Выйти</div></a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
+            <div id="space"></div>
+            <div class="menu" ng-if="showingMenu">
+                <a href="#/"><div>Главная</div></a>
+                <a href="#/archieve"><div>Архив задач</div></a>
+                <a ng-if="isAutorizated" href="#/user/{{userName}}"><div>Профиль</div></a>
+                <div ng-if="isAutorizated" id="user"><div>{{userName}}</div></div>
             </div>
         </header>
+        <div style="height: 110px;"></div>
         <div ng-view></div>
     </body>
 </html>
