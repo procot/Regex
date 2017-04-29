@@ -6,7 +6,9 @@ angular.module("RegexTasks", [
     'toArchieve',
     'toTask',
     'toUser',
-    'toResults'
+    'toResults',
+    'toInfo',
+    'ngAnimate'
 ]);
 
 angular.
@@ -27,6 +29,8 @@ angular.
                 template: "<to-task></to-task>"
             }).when('/', {
                 template: "<to-home></to-home>"
+            }).when('/task-information', {
+                template: "<to-info></to-info>"
             }).otherwise('/');
         }
     ]);

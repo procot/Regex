@@ -7,6 +7,7 @@ const mongoUrl = "mongodb://localhost:27017/regexdb";
 
 const requests = {};
 let currentUser = {};
+let results = [];
 
 requests["/"] = function (res) {
 	requests["file"](res, "/index/index.html");
@@ -28,8 +29,8 @@ requests["file"] = function (res, nameFile) {
 			res.writeHead(200, {"Content-Type": "text/javascript"});
 			res.write(data);
 		}
-		else if (/.ico$/.test(nameFile)) {
-			res.writeHead(200, {"Content-Type": "image/ico"});
+		else if (/(.ico)|(.png)|(.jpg)$/.test(nameFile)) {
+			res.writeHead(200, {"Content-Type": `image/${nameFile.match(/\.(\S+)$/)[1]}`});
 			res.write(data, "binary");
 		}
 		else if (/.ttf$/.test(nameFile)) {
@@ -78,9 +79,19 @@ requests["/autoriz"] = function (res, req, query) {
 							for (let key in user)
 								currentUser['data'][key] = user[key];
 
-							fs.writeFile('index/users/' + user.login + '.json', JSON.stringify({"login": user.login}), (err) => {
+							const toFile = {
+								"login": user.login,
+								"name": "",
+								"organization": "",
+								"status": "Новичок",
+								"countCompleted": 0,
+								"countWrong": 0,
+								"results": []
+							};
+
+							fs.writeFile(`index/users/${user.login}.json`, JSON.stringify(toFile), (err) => {
 								if (err) {
-									console.log('Error: cannot create file' + user.login + '.json');
+									console.log(`Error: cannot create file ${user.login}.json`);
 								}
 							});
 							res.write(JSON.stringify(currentUser));
@@ -117,9 +128,23 @@ requests["/autoriz"] = function (res, req, query) {
 					for (let key in result[0])
 						currentUser['data'][key] = result[0][key];
 
-					res.write(JSON.stringify(currentUser));
-					res.end();
-					db.close();
+					fs.readFile(`index/users/${currentUser.data.login}.json`, (err, data) => {
+						if (err) {
+							db.close();
+							res.end();
+							return err;
+						}
+
+						results = [];
+
+						JSON.parse(data).results.forEach((element) => {
+							results.push(element);
+						});
+
+						res.write(JSON.stringify(currentUser));
+						res.end();
+						db.close();
+					});
 				});				
 			});
 		});
@@ -139,14 +164,15 @@ requests["/checkTask"] = function (res, req) {
 	req.on('end', () => {
 		let tests;
 		const code = new Function('', `return ${task.code}`);
-		fs.readFile(`index/tests/${task.task}.json`, (err, data) => {
+		fs.readFile(`index/tests/${task.titleEnglish}.json`, (err, data) => {
 			if (err) {
 				res.end();
 				return;
 			}
 
 			tests = JSON.parse(data);
-			for (let i = 0; i < tests.length; ++i) {
+			let flag = false;
+			for (let i = 0; i < tests.length && !flag; ++i) {
 				let result;
 				try {
 					result = code()(tests[i].input);
@@ -155,21 +181,92 @@ requests["/checkTask"] = function (res, req) {
 						"status": "answer",
 						"number": i + 1
 						};
-						res.end(JSON.stringify(e));
-						return;
+						results.push({
+							"message": `Неправильный ответ на тесте ${i + 1}`,
+		                    'status': 'error',
+		                    'task': task.titleRussian,
+	                    	'href': `#/task/${task.titleEnglish}`
+						});
+						flag = true;
+
+						fs.readFile(`index/users/${currentUser.data.login}.json`, (err, data) => {
+							if (err) {
+								res.end();
+								return;
+							}
+							const prop = JSON.parse(data);
+							prop.countWrong++;
+							prop.results = [];
+							results.forEach((element) => {prop.results.push(element);});
+							fs.writeFile(`index/users/${currentUser.data.login}.json`, JSON.stringify(prop), (err) => {
+								if (err) {
+									console.log('Error: cannot write results to file');
+								}
+							});
+							res.end(JSON.stringify(e));
+							return;
+						});
 					}
 				} catch(e) {
 					let er = {};
 					er.status = 'runtime';
 					er.number = i + 1;
-					res.end(JSON.stringify(er));
-					return;
+					results.push({
+						"message": `Ошибка исполнения на тесте ${i + 1}`,
+	                    'status': 'error',
+	                    'task': task.titleRussian,
+	                    'href': `#/task/${task.titleEnglish}`
+					});
+					flag = true;
+					
+					fs.readFile(`index/users/${currentUser.data.login}.json`, (err, data) => {
+						if (err) {
+							res.end();
+							return;
+						}
+						const prop = JSON.parse(data);
+						prop.results = [];
+						results.forEach((element) => {prop.results.push(element);});
+						fs.writeFile(`index/users/${currentUser.data.login}.json`, JSON.stringify(prop), (err) => {
+							if (err) {
+								console.log('Error: cannot write results to file');
+							}
+						});
+						res.end(JSON.stringify(er));
+						return;
+					});
 				}
 			}
-			const r = {
-				status: "OK"
-			};
-			res.end(JSON.stringify(r));
+			if (!flag) {
+				const r = {
+					status: "OK"
+				};
+
+				results.push({
+					"message": 'Все тесты пройдены',
+                    'status': 'ok',
+                    'task': task.titleRussian,
+                    'href': `#/task/${task.titleEnglish}`
+				});
+
+				fs.readFile(`index/users/${currentUser.data.login}.json`, (err, data) => {
+					if (err) {
+						res.end();
+						return;
+					}
+					const prop = JSON.parse(data);
+					prop.countCompleted++;
+					prop.results = [];
+					results.forEach((element) => {prop.results.push(element);});
+					fs.writeFile(`index/users/${currentUser.data.login}.json`, JSON.stringify(prop), (err) => {
+						if (err) {
+							console.log('Error: cannot write results to file');
+						}
+					});
+					res.end(JSON.stringify(r));
+					return;
+				});
+			}
 		});
 	});
 }

@@ -1,35 +1,35 @@
 [
 	{
-		"input": "This is test",
-		"output": "This is test"
+		"input": "this is test",
+		"output": "this is test"
 	},
 	{
-		"input": "This is is test",
-		"output": "This is aisa test"
+		"input": "this is is test",
+		"output": "this aisa aisa test"
 	},
 	{
-		"input": "This this test is is",
-		"output": "This athisa test is aisa"
+		"input": "this this test is is",
+		"output": "athisa athisa test aisa aisa"
 	},
 	{
-		"input": "This This is is is is is is is is is is javascript",
-		"output": "This aThisa is aisa aisa aisa aisa aisa aisa aisa aisa aisa javascript"
+		"input": "this this is is is is is is is is is is javascript",
+		"output": "athisa athisa aisa aisa aisa aisa aisa aisa aisa aisa aisa aisa javascript"
 	},
 	{
-		"input": "JAVASCRIPT IS VERY GOOD",
-		"output": "JAVASCRIPT IS VERY GOOD"
+		"input": "javascript is very good",
+		"output": "javascript is very good"
 	},
 	{
-		"input": "JAVASCRIPT JAVASCRIPT javascript javascript is is is is this this ok",
-		"output": "JAVASCRIPT aJAVASCRIPTa javascript ajavascripta is aisa aisa aisa this athisa ok"
+		"input": "javascript javascript javascript javascript is is is is this this ok",
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta aisa aisa aisa aisa athisa athisa ok"
 	},
 	{
 		"input": "love regular expression",
 		"output": "love regular expression"
 	},
 	{
-		"input": "LOVE REGULAR EXPRESSION",
-		"output": "LOVE REGULAR EXPRESSION"
+		"input": "love regular expression",
+		"output": "love regular expression"
 	},
 	{
 		"input": "regex the best",
@@ -41,15 +41,15 @@
 	},
 	{
 		"input": "javascript javascript javascript javascript javascript one love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta ajavascripta one love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta ajavascripta one love"
 	},
 	{
 		"input": "javascript javascript javascript javascript this one love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta this one love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta this one love"
 	},
 	{
 		"input": "javascript javascript javascript javascript this this is is one love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta this athisa is aisa one love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta athisa athisa aisa aisa one love"
 	},
 	{
 		"input": "javascript one one one love",
@@ -65,34 +65,34 @@
 	},
 	{
 		"input": "javascript javascript javascript javascript javascript one one one love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta ajavascripta one one one love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta ajavascripta one one one love"
 	},
 	{
 		"input": "javascript javascript javascript javascript javascript one love love love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta ajavascripta one love love love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta ajavascripta one love love love"
 	},
 	{
 		"input": "javascript javascript javascript javascript javascript one one one love love love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta ajavascripta one one one love love love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta ajavascripta one one one love love love"
 	},
 	{
 		"input": "javascript javascript javascript javascript this one love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta this one love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta this one love"
 	},
 	{
 		"input": "javascript javascript javascript javascript this one one one love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta this one one one love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta this one one one love"
 	},
 	{
 		"input": "javascript javascript javascript javascript this one love love love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta this one love love love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta this one love love love"
 	},
 	{
 		"input": "javascript javascript javascript javascript this one one one love love love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta this one one one love love love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta this one one one love love love"
 	},
 	{
 		"input": "javascript javascript javascript javascript this this is is one love",
-		"output": "javascript ajavascripta ajavascripta ajavascripta this athisa is aisa one love"
+		"output": "ajavascripta ajavascripta ajavascripta ajavascripta athisa athisa aisa aisa one love"
 	}
 ]

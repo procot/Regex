@@ -7,7 +7,6 @@ angular.
         controller: ['$rootScope', '$http', 
         function toArchieveController($rootScope, $http) {
             $rootScope.title = 'Архив задач';
-            $rootScope.showingMenu = true;
             if (!classRegex.isAutorizated) {
                 $rootScope.isAutorizated = false;
             } else {

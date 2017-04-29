@@ -16,13 +16,92 @@
 
 body {
 	background: #edeef0;
-	margin: 8px 15%;
-	min-width: 330px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+	margin: 0px;
 }
 
 section {
 	height: 86px;
+}
+
+ul {
+	width: 170px;
+	display: inline-block;
+	right: 0;
+	top: 128px;
+	box-sizing: border-box;
+	padding: 15px;
+    background: gainsboro;
+    height: 220px;
+    vertical-align: top;
+    margin: 5px 0;
+}
+
+li a {
+	text-decoration: none;
+}
+
+li a:before {margin-right: 5px;}
+li a:after {margin-left: 5px;}
+li a:hover:before, 
+li a:hover:after {opacity: 1;}
+li a div:hover {color: #F58262;}
+
+#main {
+	display: inline-block;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+}
+
+li a:before, li a:after {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #F58262;
+	opacity: 0;
+	transition: .5s ease-in-out;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.animation{
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.animation.ng-enter, .animation.ng-leave {
+	-webkit-transition: width 1s ease;
+    transition: width 1s ease;
+}
+
+.animation.ng-enter {width: 0;}
+.animation.ng-enter-active {width: 640px;}
+
+.animation.ng-leave {width: 640px}
+.animation.ng-leave-active {width: 0;}
+
+li a div {
+    display: inline-block;
+    transition: color .5s ease-in-out;
+}
+
+#content {
+	width: 815px;
+	margin: 0 calc(calc(100% - 815px)/2);
+}
+
+li {
+	display: block;
+    padding: 10px 15px;
+    box-sizing: border-box;
+}
+
+.body {
+	width: 640px;
+	padding: 25px;
+	padding-top: 25px;
+	box-sizing: border-box;
+	padding-bottom: 23px;
 }
 
 #headchild {
@@ -62,11 +141,11 @@ section {
 }
 
 header {
-	height: 86px;
     position: fixed;
     width: 100%;
     top: 0px;
     left: 0px;
+    min-width: 632px;
 }
 
 #space {
@@ -96,9 +175,10 @@ header {
 	font-family: 'ABeeZee', sans-serif;
 	border-radius: 10px;
 	cursor: pointer;
+	transition: .5s ease-in-out;
 }
 
-.regLog a:hover div {
+.regLog a div:hover {
 	box-shadow: 0 0 10px rgba(0, 0, 0, .8);
 	background: #52b8ea;
 	color: white;
@@ -124,9 +204,10 @@ header {
 	font-family: 'ABeeZee', sans-serif;
 	color: #edeef0;
 	cursor: pointer;
+	transition: .5s ease-in-out;
 }
 
-.menu a:hover div {
+.menu a div:hover {
 	background: linear-gradient(to top, #fefcea, #266ab7);
 	color: #06144e;
 	box-shadow:
@@ -147,7 +228,7 @@ header {
 }
 
 #user {
-	width: calc(100% - 380px);
+	width: calc(100% - 520px);
 	display: inline-block;
 }
 
@@ -156,4 +237,42 @@ header {
 	color: #aae2ad;
 	font-size: 17px;
 	text-align: right;
+}
+
+#mapSite {
+	width: 80px;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 20px;
+}
+
+#contacts {
+	display: inline-block;
+}
+
+#contacts div, #mapSite div {
+	margin-bottom: 5px;
+}
+
+#contacts div a, #mapSite div a {
+	color: #edeef0;
+}
+
+#contacts div a:hover, #mapSite div a:hover {
+	color: black;
+}
+
+footer {
+    background: #507299;
+    width: 100%;
+    font-size: 14px;
+    padding: 20px 150px;
+    box-sizing: border-box;
+    color: #edeef0;
+    min-width: 443px;
+}
+
+#cont {
+	margin-top: 5px;
+	font-size: 15px;
 }

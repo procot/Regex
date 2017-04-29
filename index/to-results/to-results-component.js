@@ -10,7 +10,12 @@ angular.
 				this.results = classRegex.results;
 				$rootScope.title = 'Результаты';
 				$rootScope.isAutorizated = this.isAutorizated = classRegex.isAutorizated;
-				$rootScope.showingMenu = true;
+                if (!classRegex.isAutorizated) {
+                    $rootScope.isAutorizated = false;
+                } else {
+                    $rootScope.isAutorizated = true;
+                    $rootScope.userName = classRegex.user.login;
+                }
 			}
 		]
 	});

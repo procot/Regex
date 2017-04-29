@@ -20,13 +20,11 @@ angular.
 			this.submit = function() {
 				const data = {};
 				data.code = document.querySelector('#code').value;
-				data.task = self.taskId;
+				data.titleEnglish = self.taskId;
+				data.titleRussian = self.task.title;
 				classRegex.Submit(data);
-				//classRegex.submitData = data;
-				//document.location.href = `#/task/results`;
 			}
 
-			$rootScope.showingMenu = true;
             if (!classRegex.isAutorizated) {
                 $rootScope.isAutorizated = this.isAutorizated = false;                
             } else {
