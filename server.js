@@ -131,9 +131,9 @@ requests["/checkTask"] = function (res, req) {
 http.createServer((req, res) => {
 	let path = url.parse(req.url);
 	if (requests[path.pathname]) {
-		requests[path.pathname](res, req);
+		requests[path.pathname](req, res);
 	} else {
-		sendFile(path.pathname, res);
+		SendFile(path.pathname, res);
 	}
 }).listen(8888);
 console.log("Server started on port 8888");

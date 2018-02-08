@@ -1,7 +1,9 @@
 const mongoClient = require('mongodb').MongoClient,
       mongoUrl = 'mongodb://localhost:27017',
       objectId = require('mongodb').ObjectId,
-      dbName = 'regexdb';
+      dbName = 'regexdb',
+      querystring = require('querystring'),
+      url = require('url');
 
 module.exports = function(req, res) {
   const id = querystring.parse(url.parse(req.url).query)._id;
