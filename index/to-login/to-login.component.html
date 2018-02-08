@@ -1,0 +1,88 @@
+<div class="body">
+    <div id="regText">Войти</div>
+    <div>
+        <div>E-mail</div>
+        <input type="text" id="email" ng-model="$ctrl.user.email">
+    </div>
+    <div>
+        <div>Пароль</div>
+        <input type="password" id="password" ng-model="$ctrl.user.password">
+    </div>
+    <div id="check">
+        <div>Показать пароль</div>
+        <input type="checkbox" onclick="showPassword(this)" onkeypress="if(event.keyCode===13)showPassword(this)">
+    </div>
+    <div id="reg"><a ng-click="$ctrl.logIn()" onkeypress="if(event.keyCode===13)logIn()"><div>Войти</div></a></div>
+    <div class="login"><a href="#/registration">Зарегистрироваться</a></div>
+</div>
+<style>
+    #to-login {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+  background: #52b8ea;
+  color: white;
+}
+
+.body div {
+  margin: 10px 0;
+  padding: 0 calc(calc(100% - 258px - 60px) / 2);
+}
+
+.body div div {
+  display: inline-block;
+  width: 60px;
+  font-size: 17px;
+}
+
+.body div input {
+  width: 250px;
+  display: inline-block;    
+  height: 19px;
+}
+
+#regText {
+  text-align: center;
+  font-size: 20px;
+  padding-bottom: 5px;
+  box-sizing: border-box;
+}
+
+#check div {
+  width: 122px;
+}
+
+#check input {
+  width: 13px;
+  height: 13px;
+}
+
+#reg a div {
+  background: linear-gradient(to top, #caced0, #024e82);
+  border-radius: 10px;
+  height: 40px;
+  width: 200px;
+  text-align: center;
+  font-size: 19px;
+  padding-top: 7px;
+  box-sizing: border-box;
+  color: snow;
+}
+
+#reg {
+  margin: 0 calc((100% - 200px) / 2);
+  padding: 0;
+  cursor: pointer;
+}
+
+#reg a:hover div {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+}
+
+.login {
+  text-align: center;
+  height: 40px;
+}
+
+#to-login-column:before,
+#to-login-column:after {opacity: 1;}
+#to-login-column div {color: #F58262;}
+</style>

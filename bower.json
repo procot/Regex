@@ -1,14 +1,14 @@
 {
-  "name": "angular-phonecat",
-  "description": "A starter project for AngularJS",
-  "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-phonecat",
-  "license": "MIT",
+  "name": "regex",
+  "description": "Site about regex",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Procot/Regex",
   "private": true,
   "dependencies": {
-    "angular": "1.5.x",
-    "angular-mocks": "1.5.x",
-    "angular-route": "1.5.x",
-    "bootstrap": "3.3.x"
+    "angular": "^1.6.9",
+    "angular-mocks": "^1.6.9",
+    "angular-route": "^1.6.9",
+    "angular-cookies": "^1.6.9",
+    "angular-animate": "^1.6.9"
   }
 }

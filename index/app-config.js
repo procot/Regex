@@ -1,20 +1,14 @@
 angular.module("RegexTasks", [
-    'toLogin',
     'ngRoute',
-    'toHome',
-    'toRegistration',
-    'toArchieve',
-    'toTask',
-    'toUser',
-    'toResults',
-    'toInfo',
-    'ngAnimate'
+    'ngAnimate',
+    'ngCookies'
 ]);
 
 angular.
     module('RegexTasks').
-    config(['$routeProvider',
-        function config($routeProvider) {
+    config(['$routeProvider', '$locationProvider',
+        function config($routeProvider, $locationProvider) {
+            $locationProvider.hashPrefix('!');
             $routeProvider.when('/login', {
                 template: "<to-login></to-login>"
             }).when('/registration', {

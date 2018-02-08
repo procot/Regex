@@ -1,0 +1,5 @@
+<div class="regLog">
+  <a ng-if="!$ctrl.isAuthorizated()" href="#!/registration"><div id="to-registration">Регистрация</div></a>
+  <a ng-if="!$ctrl.isAuthorizated()" href="#!/login"><div id="to-login">Войти</div></a>
+  <a ng-if="$ctrl.isAuthorizated()" ng-click="$ctrl.logout()"><div>Выйти</div></a>
+</div>

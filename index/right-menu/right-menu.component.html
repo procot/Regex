@@ -1,0 +1,9 @@
+<ul>
+  <li ng-if="!$ctrl.isAuthorizated()"><a href="#!/registration" id="to-registration-column"><div style="width: 85px;">Регистрация</div></a></li>
+  <li ng-if="!$ctrl.isAuthorizated()"><a href="#!/login" id="to-login-column"><div style="width: 45px;">Войти</div></a></li>
+  <li ng-if="$ctrl.isAuthorizated()"><a ng-click="$ctrl.logout()"><div>Выйти</div></a></li>
+  <li><a href="#!/" id="to-home-column"><div style="width: 55px;">Главная</div></a></li>
+  <li><a href="#!/archieve" id="to-archieve-column"><div style="width: 84px;">Архив задач</div></a></li>
+  <li ng-if="$ctrl.isAuthorizated()"><a id="to-user-column" ng-href="#!/user/{{$ctrl.userName()}}"><div>Профиль</div></a></li>
+  <li ng-if="$ctrl.isAuthorizated()"><a href="#!/task/results" id="to-results-column"><div>Результаты</div></a></li>
+</ul>

@@ -1,0 +1,7 @@
+<div class="menu">
+  <a href="#!/"><div id="to-home">Главная</div></a>
+  <a href="#!/archieve"><div id="to-archieve">Архив задач</div></a>
+  <a ng-if="$ctrl.isAuthorizated()" ng-href="#!/user/{{$ctrl.userName()}}"><div id="to-user">Профиль</div></a>
+  <a ng-if="$ctrl.isAuthorizated()" href="#!/task/results"><div id="to-results">Результаты</div></a>
+  <div ng-if="$ctrl.isAuthorizated()" id="user"><div>{{$ctrl.userName()}}</div></div>
+</div>

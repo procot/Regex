@@ -1,0 +1,43 @@
+<div class="body">
+	<h2>Как необходимо оформить решение задачи для отправки на сервер на проверку?</h2>
+	<p>Всем привет!</p>
+	<p>С Вами снова Procot и в данной статье я хочу рассказать про оформление решения задачи.</p>
+	<p>И вот Вы решили задачу, надеюсь что успешно и Ваше решение с первого же раза пройдет все тесты. Первая проблема, которая может возникнуть на вашем этапе - это конечно же как оформить решение, чтобы оно "зашло".</p>
+	<p>В данном проекте тестировщик требует оформление решения в виде функции, входными параметрами которой будут являться вводимые данные программы. Функция должна возвращать результат работы программы.</p>
+	<p>Так как в основном задачи на данном сайте имеют только один вводимые параметр и один выходной параметр, то решение может быть оформлено по следующему шаблону:</p>
+	<pre>
+		<span class="keywords">function</span>(<span class="var">input_data</span>)&nbsp;{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//решение задачи</span><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywords">return</span>&nbsp;<span class="var">output_data</span>;<br>
+		<span>}</span>
+	</pre>
+</div>
+<style>
+	#to-archieve {
+  background: linear-gradient(to top, #fefcea, #266ab7);
+  color: #06144e;
+  box-shadow:
+     0 1px 4px rgba(0, 0, 0, .3),
+     -23px 0 20px -23px rgba(0, 0, 0, .8),
+     23px 0 20px -23px rgba(0, 0, 0, .8),
+     0 0 40px rgba(0, 0, 0, .1) inset;
+}
+
+.keywords {
+  color: #b3113e;
+  font-weight: bold;
+}
+
+.var {
+  color: orange;
+}
+
+.comment {
+  color: green;
+  font-style: italic;
+}
+
+#to-archieve-column:before,
+#to-archieve-column:after {opacity: 1;}
+#to-archieve-column div {color: #F58262;}
+</style>

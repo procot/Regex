@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html ng-app="RegexTasks">
     <head>
-        <title>{{title}}</title>
         <meta charset="utf-8">
-        <script src="index/app.js"></script>
         <script src="index/script.js"></script>
         <link rel="stylesheet" type="text/css" href="index/style.css">
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
         <script src="index/app-config.js"></script>
-        <script src="index/to-home/to-home-component.js"></script>
-        <script src="index/to-login/to-login-component.js"></script>
-        <script src="index/to-registration/to-registration-component.js"></script>
-        <script src="index/to-archieve/to-archieve-component.js"></script>
-        <script src="index/to-task/to-task-component.js"></script>
-        <script src="index/to-user/to-user-component.js"></script>
-        <script src="index/to-results/to-results-component.js"></script>
-        <script src="index/to-taskInfo/to-taskInfo-component.js"></script>
+        <script src="index/to-home/to-home.component.js"></script>
+        <script src="index/to-login/to-login.component.js"></script>
+        <script src="index/to-registration/to-registration.component.js"></script>
+        <script src="index/to-archieve/to-archieve.component.js"></script>
+        <script src="index/to-task/to-task.component.js"></script>
+        <script src="index/to-user/to-user.component.js"></script>
+        <script src="index/to-results/to-results.component.js"></script>
+        <script src="index/to-task-info/to-task-info.component.js"></script>
+        <script src="index/cur-data/cur-data.service.js"></script>
+        <script src="index/top-menu/top-menu.component.js"></script>
+        <script src="index/right-menu/right-menu.component.js"></script>
+        <script src="index/acc-menu/acc-menu.component.js"></script>
+        <title></title>
     </head>
     <body link="black" vlink="black" alink="black">
         <header>
@@ -25,55 +29,37 @@
                 <div id="headchild">
                     <div id="headchild1">
                         <div id="headchild1_1">
-                            <a href="#/"><div class="nameSite">Regex.com</div></a>
+                            <a href="#!/"><div class="nameSite">Regex.com</div></a>
                         </div>
                     </div>
                     <div id="headchild2">
                         <div id="headchild2_1">
-                            <div class="regLog" ng-controller="logOut">
-                                <a ng-if="!isAutorizated" href="#/registration"><div id="to-registration">Регистрация</div></a>
-                                <a ng-if="!isAutorizated" href="#/login"><div id="to-login">Войти</div></a>
-                                <a ng-if="isAutorizated" ng-click="logout()"><div>Выйти</div></a>
-                            </div>
+                            <acc-menu></acc-menu>
                         </div>
                     </div>
                 </div>
             </section>
             <div id="space"></div>
-            <div class="menu">
-                <a href="#/"><div id="to-home">Главная</div></a>
-                <a href="#/archieve"><div id="to-archieve">Архив задач</div></a>
-                <a ng-if="isAutorizated" href="#/user/{{userName}}"><div id="to-user">Профиль</div></a>
-                <a ng-if="isAutorizated" href="#/task/results"><div id="to-results">Результаты</div></a>
-                <div ng-if="isAutorizated" id="user"><div>{{userName}}</div></div>
-            </div>
+            <top-menu></top-menu>
         </header>
         <div style="height: 125px;"></div>
         <div id="content">
             <div ng-view id="main" class="animation"></div>
-            <ul ng-controller="logOut">
-                <li ng-if="!isAutorizated"><a href="#/registration" id="to-registration-column"><div style="width: 85px;">Регистрация</div></a></li>
-                <li ng-if="!isAutorizated"><a href="#/login" id="to-login-column"><div style="width: 45px;">Войти</div></a></li>
-                <li ng-if="isAutorizated"><a ng-click="logout()"><div>Выйти</div></a></li>
-                <li><a href="#/" id="to-home-column"><div style="width: 55px;">Главная</div></a></li>
-                <li><a href="#/archieve" id="to-archieve-column"><div style="width: 84px;">Архив задач</div></a></li>
-                <li ng-if="isAutorizated"><a id="to-user-column" href="#/user/{{userName}}"><div>Профиль</div></a></li>
-                <li ng-if="isAutorizated"><a href="#/task/results" id="to-results-column"><div>Результаты</div></a></li>
-            </ul>
+            <right-menu></right-menu>
         </div>
         <footer>
             <div id="mapSite">
                 <div>Карта сайта:</div>
-                <div><a href="#/">Главная</a></div>
-                <div><a href="#/archieve">Архив задач</a></div>
+                <div><a href="#!/">Главная</a></div>
+                <div><a href="#!/archieve">Архив задач</a></div>
             </div>
             <div id="contacts">
                 <div style="width: 90px;">
                     <div>Contacts:</div>
-                    <div><a href="#/user/procot">Procot</a></div>
+                    <div><a href="#!/user/Procot">Procot</a></div>
                     <div><a href="https://vk.com/id126576135">Илья Истомин</a></div>
                 </div>
-                <div>E-mail: ilyaistomin1998@yandex.ru</div>
+                <div>E-mail: ilyaistomin9817@gmail.com</div>
             </div>
             <div id="cont">
                 All content &#169 2017 Procot Company | Powered by Node.js, AngularJS1.6
