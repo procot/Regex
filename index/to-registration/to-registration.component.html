@@ -1,92 +1,105 @@
 <div class="body">
+  <form ng-submit="$ctrl.reg()">
     <div id="regText">Регистрация</div>
     <div>
-        <div>Логин</div>
-        <input type="text" id="login" tabindex="4" ng-model="$ctrl.user.login">
+      <div>Логин</div>
+      <input autocomplete="username" type="text" id="login" tabindex="4" ng-model="$ctrl.user.login">
     </div>
     <div>
-        <div>E-mail</div>
-        <input type="text" id="email" tabindex="5" ng-model="$ctrl.user.email">
+      <div>E-mail</div>
+      <input autocomplete="email" type="text" id="email" tabindex="5" ng-model="$ctrl.user.email">
     </div>
     <div>
-        <div>Пароль</div>
-        <input type="password" id="password" tabindex="6" ng-model="$ctrl.user.password">
+      <div>Пароль</div>
+      <input autocomplete="current-password" type="password" id="password" tabindex="6" ng-model="$ctrl.user.password">
     </div>
     <div id="check">
-        <div>Показать пароль</div>
-        <input type="checkbox" onclick="showPassword(this)" tabindex="7" onkeypress="if(event.keyCode===13)showPassword(this)">
+      <div>Показать пароль</div>
+      <input type="checkbox" onclick="showPassword(this)" tabindex="7" onkeypress="if(event.keyCode===13)showPassword(this)">
     </div>
-    <div id="reg"><a ng-click="$ctrl.reg()" tabindex="8" onkeypress="if(event.keyCode===13)reg()"><div>Зарегистрироваться</div></a></div>
-    <div class="login"><a href="#/login" tabindex="9">Войти</a></div>
+    <div id="reg">
+      <div>
+        <input type="submit" value="Зарегистрироваться">
+      </div>
+    </div>
+    <div class="login">
+      <a href="#/login" tabindex="9">Войти</a>
+    </div>
+  </form>
 </div>
 <style>
-    #to-registration {
-  box-shadow: 0 0 10px rgba(0, 0, 0, .8);
-  background: #52b8ea;
-  color: white;
-}
+  #to-registration {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+    background: #52b8ea;
+    color: white;
+  }
 
-.body div {
-  margin: 10px 0;
-  padding: 0 calc(calc(100% - 258px - 60px) / 2);
-}
+  .body div {
+    margin: 10px 0;
+    padding: 0 calc(calc(100% - 258px - 60px) / 2);
+  }
 
-.body div div {
-  display: inline-block;
-  width: 60px;
-  font-size: 17px;
-}
+  .body div div {
+    display: inline-block;
+    width: 60px;
+    font-size: 17px;
+  }
 
-.body div input {
-  width: 250px;
-  display: inline-block;    
-  height: 19px;
-}
+  .body div input {
+    width: 250px;
+    display: inline-block;
+    height: 19px;
+  }
 
-#regText {
-  text-align: center;
-  font-size: 20px;
-  padding-bottom: 5px;
-  box-sizing: border-box;
-}
+  #regText {
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+  }
 
-#check div {
-  width: 122px;
-}
+  #check div {
+    width: 122px;
+  }
 
-#check input {
-  width: 13px;
-  height: 13px;
-}
+  #check input {
+    width: 13px;
+    height: 13px;
+  }
 
-#reg a div {
-  background: linear-gradient(to top, #caced0, #024e82);
-  border-radius: 10px;
-  height: 40px;
-  width: 200px;
-  text-align: center;
-  font-size: 19px;
-  padding-top: 7px;
-  box-sizing: border-box;
-  color: snow;
-}
+  #reg div input {
+    background: linear-gradient(to top, #caced0, #024e82);
+    border-radius: 10px;
+    height: 40px;
+    width: 200px;
+    text-align: center;
+    font-size: 19px;
+    padding-top: 7px;
+    box-sizing: border-box;
+    color: snow;
+  }
 
-#reg {
-  margin: 0 calc((100% - 200px) / 2);
-  padding: 0;
-  cursor: pointer;
-}
+  #reg {
+    margin: 0 calc((100% - 200px) / 2);
+    padding: 0;
+    cursor: pointer;
+  }
 
-#reg a:hover div {
-  box-shadow: 0 0 10px rgba(0, 0, 0, .8);
-}
+  #reg div:hover input {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+  }
 
-.login {
-  text-align: center;
-  height: 40px;
-}
+  .login {
+    text-align: center;
+    height: 40px;
+  }
 
-#to-registration-column:before,
-#to-registration-column:after {opacity: 1;}
-#to-registration-column div {color: #F58262;}
+  #to-registration-column:before,
+  #to-registration-column:after {
+    opacity: 1;
+  }
+
+  #to-registration-column div {
+    color: #F58262;
+  }
 </style>

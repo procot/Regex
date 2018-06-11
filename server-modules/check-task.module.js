@@ -1,31 +1,21 @@
-const http = require('http');
-const url = require("url");
+const log = require('./console-log.module');
 
-const Login = require('./server-modules/login.module');
-const Registration = require('./server-modules/registration.module');
-const SendFile = require('./server-modules/send-file.module');
-const UserInfo = require('./server-modules/user-info.module');
-const CheckTask = require('./server-modules/check-task.module');
+module.exports = function(req, res) {
+  let data = '';
+  req.on('data', chunk => {
+    data += chunk;
+  });
 
-const requests = {};
-
-requests["/account/login"] = Login;
-requests['/account/registration'] = Registration;
-requests["/getUserInfo"] = UserInfo;
-requests['/check-task'] = 
-
-requests["/checkTask"] = function (res, req) {
-	let task;
-	req.on('data', (data) => {
-		task = JSON.parse(data);
-	});
-
-	req.on('end', () => {
-		let tests;
+  req.on('end', () => {
+    let tests;
 		const code = new Function('', `return ${task.code}`);
 		fs.readFile(`index/tests/${task.titleEnglish}.json`, (err, data) => {
 			if (err) {
-				res.end();
+				res.end(JSON.stringify({
+          status: 'error',
+          message: 'Error check task'
+        }));
+        log.error('Error: check task');
 				return;
 			}
 
@@ -127,18 +117,5 @@ requests["/checkTask"] = function (res, req) {
 				});
 			}
 		});
-	});
-}
-
-module.exports = function (port) {
-	port = port || process.env.PORT || 8888;
-	http.createServer((req, res) => {
-		let path = url.parse(req.url);
-		if (path.pathname in requests) {
-			requests[path.pathname](req, res);
-		} else {
-			SendFile(path.pathname, res);
-		}
-	}).listen(port);
-	console.log(`Server started on port ${port}`);
+  });
 }
